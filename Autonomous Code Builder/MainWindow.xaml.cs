@@ -1,0 +1,105 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
+
+namespace Autonomous_Code_Builder
+{
+    /// <summary>
+    /// Interaction logic for MainWindow.xaml
+    /// </summary>
+
+    public partial class MainWindow : Window
+    {
+
+        string listName = "Item ";
+        int id = 0;
+
+        public MainWindow()
+        {
+            InitializeComponent();
+            pathList.SelectionMode = SelectionMode.Single;
+        }
+
+        private void add(object sender, RoutedEventArgs e)
+        {
+            int index = pathList.Items.IndexOf(pathList.SelectedItem);
+            //if (index != -1)
+            //{
+                pathList.Items.Insert(index + 1, listName + id);
+
+            pathList.SelectedIndex = index + 1;
+            //} else
+            //{
+            //    pathList.Items.Add(listName + id);
+            //}
+            id++;
+
+        }
+        
+        private void edit(object sender, RoutedEventArgs e)
+        {
+            StepConfig stepConfig = new StepConfig();
+            stepConfig.Show();
+            //pathList.SelectedItem;
+        }
+
+        private void delete(object sender, RoutedEventArgs e)
+        {
+            int index = pathList.Items.IndexOf(pathList.SelectedItem);
+            if (index != -1)
+            {
+                pathList.Items.RemoveAt(index);
+                if (index > 0)
+                {
+                    pathList.SelectedIndex = index - 1;
+                }
+                else
+                {
+                    pathList.SelectedIndex = index;
+                }
+            }
+        }
+
+        private void reorderDown(object sender, RoutedEventArgs e)
+        {
+            int index = pathList.Items.IndexOf(pathList.SelectedItem);
+            if (index < pathList.Items.Count - 1 && index != -1)
+            {
+                pathList.Items.Insert(index+2, pathList.SelectedItem);
+                pathList.Items.RemoveAt(index);
+                pathList.SelectedIndex = index + 1;
+            }
+
+        }
+
+        private void reorderUp(object sender, RoutedEventArgs e)
+        {
+            int index = pathList.Items.IndexOf(pathList.SelectedItem);
+            if (index > 0)
+            {
+                pathList.Items.Insert(index - 1, pathList.SelectedItem);
+                pathList.Items.RemoveAt(index + 1);
+                pathList.SelectedIndex = index - 1;
+            }
+
+        }
+
+        private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            rectangle.Width = rectangle.ActualHeight;
+        }
+
+        
+    }
+}

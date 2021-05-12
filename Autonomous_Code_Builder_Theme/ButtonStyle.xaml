@@ -1,0 +1,80 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Color x:Key="BackgroundColor" A="255" R="41" G="41" B="41"/>
+
+    <Color x:Key="MouseOverBackgroundColor" A="255" R="41" G="55" B="63"/>
+    <Color x:Key="MouseOverBorderColor" A="255" R="39" G="119" B="158"/>
+
+    <Color x:Key="MouseDownBackgroundColor" A="255" R="40" G="69" B="83"/>
+    <Color x:Key="MouseDownBorderColor" A="255" R="38" G="160" B="218"/>
+
+
+    <Style TargetType="Button">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border x:Name="Border" BorderThickness="1" >
+                        <Border.BorderBrush>
+                            <SolidColorBrush x:Name="BorderColor" Color="{StaticResource BackgroundColor}"/>
+                        </Border.BorderBrush>
+                        <Border.Background>
+                            <SolidColorBrush x:Name="Background" Color="{StaticResource BackgroundColor}"/>
+                        </Border.Background>
+                        <ContentPresenter Margin="{TemplateBinding Padding}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                    </Border>
+
+
+                    <ControlTemplate.Triggers>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsEnabled" Value="True"/>
+                                <Condition Property="IsMouseOver" Value="True"/>
+                            </MultiTrigger.Conditions>
+                            <MultiTrigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard x:Name="MouseOverAnimation">
+                                        <ColorAnimation Storyboard.TargetName="Background" Storyboard.TargetProperty="Color" To="{StaticResource MouseOverBackgroundColor}" Duration="00:00:00.075"/>
+                                        <ColorAnimation Storyboard.TargetName="BorderColor" Storyboard.TargetProperty="Color" To="{StaticResource MouseOverBorderColor}" Duration="00:00:00.075"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </MultiTrigger.EnterActions>
+                            <MultiTrigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard x:Name="MouseOutAnimation" FillBehavior="Stop">
+                                        <ColorAnimation Storyboard.TargetName="Background" Storyboard.TargetProperty="Color" To="{StaticResource BackgroundColor}" Duration="00:00:00.075"/>
+                                        <ColorAnimation Storyboard.TargetName="BorderColor" Storyboard.TargetProperty="Color" To="{StaticResource BackgroundColor}" Duration="00:00:00.075"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </MultiTrigger.ExitActions>
+                        </MultiTrigger>
+
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsEnabled" Value="True"/>
+                                <Condition Property="IsPressed" Value="True"/>
+                            </MultiTrigger.Conditions>
+                            <MultiTrigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard x:Name="MouseDownAnimation">
+                                        <ColorAnimation Storyboard.TargetName="Background" Storyboard.TargetProperty="Color" To="{StaticResource MouseDownBackgroundColor}" Duration="0"/>
+                                        <ColorAnimation Storyboard.TargetName="BorderColor" Storyboard.TargetProperty="Color" To="{StaticResource MouseDownBorderColor}" Duration="0"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </MultiTrigger.EnterActions>
+                            <MultiTrigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard x:Name="MouseUpAnimation" FillBehavior="Stop">
+                                        <ColorAnimation Storyboard.TargetName="Background" Storyboard.TargetProperty="Color" To="{StaticResource MouseOverBackgroundColor}" Duration="00:00:0.01"/>
+                                        <ColorAnimation Storyboard.TargetName="BorderColor" Storyboard.TargetProperty="Color" To="{StaticResource MouseOverBorderColor}" Duration="00:00:0.01"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </MultiTrigger.ExitActions>
+                        </MultiTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>
