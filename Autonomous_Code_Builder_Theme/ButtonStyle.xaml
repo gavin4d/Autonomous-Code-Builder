@@ -2,6 +2,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <Color x:Key="BackgroundColor" A="255" R="41" G="41" B="41"/>
+    <Color x:Key="BorderColor" A="255" R="41" G="41" B="41"/>
 
     <Color x:Key="MouseOverBackgroundColor" A="255" R="41" G="55" B="63"/>
     <Color x:Key="MouseOverBorderColor" A="255" R="39" G="119" B="158"/>
@@ -16,7 +17,7 @@
                 <ControlTemplate TargetType="Button">
                     <Border x:Name="Border" BorderThickness="1" >
                         <Border.BorderBrush>
-                            <SolidColorBrush x:Name="BorderColor" Color="{StaticResource BackgroundColor}"/>
+                            <SolidColorBrush x:Name="BorderColor" Color="{StaticResource BorderColor}"/>
                         </Border.BorderBrush>
                         <Border.Background>
                             <SolidColorBrush x:Name="Background" Color="{StaticResource BackgroundColor}"/>
@@ -43,7 +44,7 @@
                                 <BeginStoryboard>
                                     <Storyboard x:Name="MouseOutAnimation" FillBehavior="Stop">
                                         <ColorAnimation Storyboard.TargetName="Background" Storyboard.TargetProperty="Color" To="{StaticResource BackgroundColor}" Duration="00:00:00.075"/>
-                                        <ColorAnimation Storyboard.TargetName="BorderColor" Storyboard.TargetProperty="Color" To="{StaticResource BackgroundColor}" Duration="00:00:00.075"/>
+                                        <ColorAnimation Storyboard.TargetName="BorderColor" Storyboard.TargetProperty="Color" To="{StaticResource BorderColor}" Duration="00:00:00.075"/>
                                     </Storyboard>
                                 </BeginStoryboard>
                             </MultiTrigger.ExitActions>

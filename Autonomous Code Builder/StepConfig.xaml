@@ -5,8 +5,43 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Autonomous_Code_Builder"
         mc:Ignorable="d"
-        Title="Step Config" Height="450" Width="500" Background="#FF292929" WindowStyle="ToolWindow" ResizeMode="NoResize" Topmost="True" WindowStartupLocation="CenterOwner" Foreground="White">
+        Title="Step Config" Height="450" Width="500" Background="#FF383838" WindowStyle="ToolWindow" ResizeMode="NoResize" Topmost="True" WindowStartupLocation="CenterOwner" Foreground="White">
     <Grid>
-        
+        <Rectangle Fill="#FF292929" Margin="10,10,10,50"/>
+        <Button Click="Save"  Content="Done" Margin="0,0,15,10" Foreground="White" HorizontalAlignment="Right" Width="65" Height="30" VerticalAlignment="Bottom"/>
+        <Button Click="Cancel" Content="Cancel" Margin="0,0,95,10" Foreground="White" HorizontalAlignment="Right" Width="65" Height="30" VerticalAlignment="Bottom"/>
+        <Button Click="Delete" Content="Delete" Margin="0,0,175,10" Foreground="White" HorizontalAlignment="Right" Width="65" Height="30" VerticalAlignment="Bottom"/>
+        <Label Content="Action" HorizontalAlignment="Left" Height="24" Margin="24,35,0,0" VerticalAlignment="Top" Foreground="White" Width="100"/>
+        <ComboBox Name="action" HorizontalAlignment="Left" Height="24" Margin="150,35,0,0" VerticalAlignment="Top" Width="250" Background="#FF292929"/>
+        <Label Content="Function" HorizontalAlignment="Left" Height="24" Margin="24,75,0,0" VerticalAlignment="Top" Foreground="White" Width="100"/>
+        <ComboBox Name="function" HorizontalAlignment="Left" Height="24" Margin="150,75,0,0" VerticalAlignment="Top" Width="250" Background="#FF292929"/>
+        <Label Content="Param 1" HorizontalAlignment="Left" Height="24" Margin="24,115,0,0" VerticalAlignment="Top" Foreground="White" Width="100"/>
+        <TextBox x:Name="param1" HorizontalAlignment="Left" Height="24" Margin="150,115,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="250" BorderBrush="#FF383838" Foreground="White">
+            <TextBox.Background>
+                <SolidColorBrush Color="{DynamicResource BackgroundColor}"/>
+            </TextBox.Background>
+        </TextBox>
+        <Label Content="Param 2" HorizontalAlignment="Left" Height="24" Margin="24,155,0,0" VerticalAlignment="Top" Foreground="White" Width="100"/>
+        <TextBox x:Name="param2" HorizontalAlignment="Left" Height="24" Margin="150,155,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="250" BorderBrush="#FF383838" Foreground="White">
+            <TextBox.Background>
+                <SolidColorBrush Color="{DynamicResource BackgroundColor}"/>
+            </TextBox.Background>
+        </TextBox>
+        <Label Content="Param 3" HorizontalAlignment="Left" Height="24" Margin="24,195,0,0" VerticalAlignment="Top" Foreground="White" Width="100"/>
+        <TextBox x:Name="param3" HorizontalAlignment="Left" Height="24" Margin="150,195,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="250"  BorderBrush="#FF383838" Foreground="White">
+            <TextBox.Background>
+                <SolidColorBrush Color="{DynamicResource BackgroundColor}"/>
+            </TextBox.Background>
+        </TextBox>
+        <Label Content="Asynchronous" HorizontalAlignment="Left" Height="24" Margin="24,235,0,0" VerticalAlignment="Top" Foreground="White" Width="100"/>
+        <CheckBox x:Name="async"  Content="" HorizontalAlignment="Left" Margin="150,240,0,0" VerticalAlignment="Top"/>
+        <Label Content="Delay" HorizontalAlignment="Left" Height="24" Margin="24,275,0,0" VerticalAlignment="Top" Foreground="White" Width="100"/>
+        <TextBox x:Name="delay" HorizontalAlignment="Left" Height="24" Margin="150,275,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="210"  BorderBrush="#FF383838" Foreground="White">
+            <TextBox.Background>
+                <SolidColorBrush Color="{DynamicResource BackgroundColor}"/>
+            </TextBox.Background>
+        </TextBox>
+        <Label Content="ms" HorizontalAlignment="Left" Height="24" Margin="365,275,0,0" VerticalAlignment="Top" Width="35" Foreground="White"/>
+
     </Grid>
 </Window>

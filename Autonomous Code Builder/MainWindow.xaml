@@ -7,20 +7,100 @@
         mc:Ignorable="d"
         Title="Autonomous Code Builder" Height="520" Width="800" SizeChanged="Window_SizeChanged" WindowStartupLocation="Manual" Visibility="Visible" ShowInTaskbar="False" Background="#FF0C0C0C">
     <Grid>
-        <Rectangle x:Name="rectangle" HorizontalAlignment="Center" Margin="310,10,10,10" Width="469" >
+        <Rectangle x:Name="rectangle" HorizontalAlignment="Center" Margin="310,10,10,10" Width="469">
             <Rectangle.Fill>
                 <ImageBrush ImageSource="field.png"/>
             </Rectangle.Fill>
         </Rectangle>
         <Grid HorizontalAlignment="Left" Margin="0,0,0,0" Width="300" Background="#FF383838">
             <ListBox x:Name="pathList" HorizontalAlignment="Left" Margin="0,82,0,0" Width="300" Background="#FF292929" Foreground="#FFE6E6E6" BorderBrush="#FF292929"/>
-            <Button Click="add" x:Name="button" Content="Add" HorizontalAlignment="Left" Height="80" VerticalAlignment="Top" Width="60" Foreground="#FFE6E6E6"/>
-            <Button Click="edit" x:Name="buttonEdit" Content="Edit" HorizontalAlignment="Left" Height="80" Margin="60,0,0,0" VerticalAlignment="Top" Width="60" Foreground="#FFE6E6E6"/>
-            <Button Click="delete" x:Name="buttonDelete" Content="Delete" HorizontalAlignment="Left" Height="80" Margin="120,0,0,0" VerticalAlignment="Top" Width="60" Foreground="#FFE6E6E6"/>
-            <Button Click="reorderUp" x:Name="buttonMoveUp" HorizontalAlignment="Left" Height="40" Margin="180,0,0,0" VerticalAlignment="Top" Width="40" Content="⯅" FontSize="24" Foreground="#FFE6E6E6"/>
-            <Button Click="reorderDown" x:Name="buttonMoveDown" Content="⯆" HorizontalAlignment="Left" Height="40" Margin="180,40,0,0" VerticalAlignment="Top" Width="40" FontSize="24" Foreground="#FFE6E6E6"/>
-            <Button IsEnabled="False" Content="Load" x:Name="buttonLoad" HorizontalAlignment="Left" Height="40" Margin="220,0,0,0" VerticalAlignment="Top" Width="80" Foreground="#FFE6E6E6"/>
-            <Button IsEnabled="False" Content="Save" x:Name="buttonSave" HorizontalAlignment="Left" Height="40" Margin="220,40,0,0" VerticalAlignment="Top" Width="80" Foreground="#FFE6E6E6"/>
+            <Button Click="add" x:Name="buttonAdd" Content="Add" HorizontalAlignment="Left" Height="40" VerticalAlignment="Top" Width="65" Foreground="#FFE6E6E6"/>
+            <Button Click="edit" x:Name="buttonEdit" Content="Edit" HorizontalAlignment="Left" Height="40" Margin="0,40,0,0" VerticalAlignment="Top" Width="65" Foreground="#FFE6E6E6"/>
+            <Button Click="delete" x:Name="buttonDelete" Content="Settings" HorizontalAlignment="Left" Height="40" Margin="235,0,0,0" VerticalAlignment="Top" Width="65" Foreground="#FFE6E6E6"/>
+            <Button Click="reorderUp" x:Name="buttonMoveUp" HorizontalAlignment="Left" Height="40" Margin="65,0,0,0" VerticalAlignment="Top" Width="40" Content="⯅" FontSize="24" Foreground="#FFE6E6E6"/>
+            <Button Click="reorderDown" x:Name="buttonMoveDown" Content="⯆" HorizontalAlignment="Left" Height="40" Margin="65,40,0,0" VerticalAlignment="Top" Width="40" FontSize="24" Foreground="#FFE6E6E6"/>
+            <Button Content="New" x:Name="buttonNew" HorizontalAlignment="Left" Height="40" Margin="105,0,0,0" VerticalAlignment="Top" Width="65" Foreground="#FFE6E6E6"/>
+            <Button Content="Load" x:Name="buttonLo" HorizontalAlignment="Left" Height="40" Margin="105,40,0,0" VerticalAlignment="Top" Width="65" Foreground="#FFE6E6E6"/>
+            <Button IsEnabled="False" Content="Load" x:Name="buttonLoad" HorizontalAlignment="Left" Height="40" Margin="170,0,0,0" VerticalAlignment="Top" Width="65" Foreground="#FFE6E6E6"/>
+            <Button IsEnabled="False" Content="Save" x:Name="buttonSave" HorizontalAlignment="Left" Height="40" Margin="170,40,0,0" VerticalAlignment="Top" Width="65" Foreground="#FFE6E6E6"/>
+            <Button Click="SwitchSides" Content="Side: Red" x:Name="Side" HorizontalAlignment="Left" Height="40" Margin="235,40,0,0" VerticalAlignment="Top" Width="65" Foreground="#FFE6E6E6"/>
         </Grid>
+        <RadioButton Content="A" HorizontalAlignment="Left" Margin="312,44,0,0" VerticalAlignment="Top" Foreground="White"/>
+        <RadioButton Content="B" HorizontalAlignment="Left" Margin="312,64,0,0" VerticalAlignment="Top" Foreground="White"/>
+        <RadioButton Content="C" HorizontalAlignment="Left" Margin="312,84,0,0" VerticalAlignment="Top" Foreground="White"/>
+        <CheckBox HorizontalAlignment="Left" Margin="305,0,0,0" VerticalAlignment="Top"  Style="{DynamicResource CheckBoxStyle1}"/>
     </Grid>
+
+    <Window.Resources>
+        <Style x:Key="CheckBoxStyle1" TargetType="{x:Type CheckBox}">
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.WindowTextBrushKey}}"/>
+            <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.WindowBrushKey}}"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type CheckBox}">
+                        <ControlTemplate.Resources>
+                            <Storyboard x:Key="OnChecking">
+                                <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="slider" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)">
+                                    <SplineDoubleKeyFrame KeyTime="00:00:00.1000000" Value="20"/>
+                                </DoubleAnimationUsingKeyFrames>
+                            </Storyboard>
+                            <Storyboard x:Key="OnUnchecking">
+                                <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="slider" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)">
+                                    <SplineDoubleKeyFrame KeyTime="00:00:00.1000000" Value="0"/>
+                                </DoubleAnimationUsingKeyFrames>
+                                <ThicknessAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="slider" Storyboard.TargetProperty="(FrameworkElement.Margin)">
+                                    <SplineThicknessKeyFrame KeyTime="00:00:00.1000000" Value="4,4,4,4"/>
+                                </ThicknessAnimationUsingKeyFrames>
+                            </Storyboard>
+                        </ControlTemplate.Resources>
+
+                        <DockPanel x:Name="dockPanel">
+                            <ContentPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" Content="{TemplateBinding Content}" ContentStringFormat="{TemplateBinding ContentStringFormat}" ContentTemplate="{TemplateBinding ContentTemplate}" RecognizesAccessKey="True" VerticalAlignment="Center"/>
+                            <Grid Margin="0,0,0,0" Width="60" Height="40">
+                                <Rectangle Margin="6" RadiusX="14" RadiusY="14">
+                                    <Rectangle.Fill>
+                                        <LinearGradientBrush StartPoint="0.3, 0.5" EndPoint="0.7, 0.5">
+                                            <GradientStop Color="Blue" Offset="0"/>
+                                            <GradientStop Color="Red" Offset="1"/>
+                                        </LinearGradientBrush>
+                                    </Rectangle.Fill>
+                                </Rectangle>
+                                <Border HorizontalAlignment="Left" x:Name="slider" Width="32" Height="32" BorderThickness="2,2,2,2" CornerRadius="18,18,18,18" RenderTransformOrigin="0.5,0.5" Margin="4,4,4,4">
+                                    <Border.RenderTransform>
+                                        <TransformGroup>
+                                            <ScaleTransform ScaleX="1" ScaleY="1"/>
+                                            <SkewTransform AngleX="0" AngleY="0"/>
+                                            <RotateTransform Angle="0"/>
+                                            <TranslateTransform X="0" Y="0"/>
+                                        </TransformGroup>
+                                    </Border.RenderTransform>
+                                    <Border.BorderBrush>
+                                        <SolidColorBrush Color="#FF383838"/>
+                                    </Border.BorderBrush>
+                                    <Border.Background>
+                                        <SolidColorBrush x:Name="Background" Color="{StaticResource BackgroundColor}"/>
+                                    </Border.Background>
+                                </Border>
+                            </Grid>
+                        </DockPanel>
+
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Trigger.ExitActions>
+                                    <BeginStoryboard Storyboard="{StaticResource OnUnchecking}" x:Name="OnUnchecking_BeginStoryboard"/>
+                                </Trigger.ExitActions>
+                                <Trigger.EnterActions>
+                                    <BeginStoryboard Storyboard="{StaticResource OnChecking}" x:Name="OnChecking_BeginStoryboard"/>
+                                </Trigger.EnterActions>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
 </Window>

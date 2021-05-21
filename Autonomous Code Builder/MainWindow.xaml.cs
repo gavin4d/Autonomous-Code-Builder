@@ -22,8 +22,9 @@ namespace Autonomous_Code_Builder
     public partial class MainWindow : Window
     {
 
-        string listName = "Item ";
-        int id = 0;
+        static string blankName = "No Info";
+        byte side = 0;
+        static readonly string[] buttonSideNames = {"Side: Red", "Side: Blue"};
 
         public MainWindow()
         {
@@ -33,28 +34,28 @@ namespace Autonomous_Code_Builder
 
         private void add(object sender, RoutedEventArgs e)
         {
+            buttonAdd.IsEnabled = false;
+            buttonEdit.IsEnabled = false;
             int index = pathList.Items.IndexOf(pathList.SelectedItem);
-            //if (index != -1)
-            //{
-                pathList.Items.Insert(index + 1, listName + id);
+            pathList.Items.Insert(index + 1, blankName);
 
             pathList.SelectedIndex = index + 1;
-            //} else
-            //{
-            //    pathList.Items.Add(listName + id);
-            //}
-            id++;
+
+            edit(sender, e);
 
         }
         
         private void edit(object sender, RoutedEventArgs e)
         {
-            StepConfig stepConfig = new StepConfig();
-            stepConfig.Show();
-            //pathList.SelectedItem;
+            if (pathList.SelectedItem != null)
+            {
+                StepConfig stepConfig = new StepConfig();
+                stepConfig.setMain(this);
+                stepConfig.Show();
+            }
         }
 
-        private void delete(object sender, RoutedEventArgs e)
+        public void delete(object sender, RoutedEventArgs e)
         {
             int index = pathList.Items.IndexOf(pathList.SelectedItem);
             if (index != -1)
@@ -95,11 +96,16 @@ namespace Autonomous_Code_Builder
 
         }
 
+        private void SwitchSides(object sender, RoutedEventArgs e)
+        {
+            side++;
+            if (side == 2) side = 0;
+            Side.Content = buttonSideNames[side];
+        }
+
         private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
         {
             rectangle.Width = rectangle.ActualHeight;
         }
-
-        
     }
 }

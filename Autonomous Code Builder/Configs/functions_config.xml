@@ -1,0 +1,64 @@
+<functionSet name="Move" id="0">
+    <params name="Power" id="0">
+    <params name="Target X" id="1">
+    <params name="Target Y" id="2">
+
+    <function name="Strafe Move" id="0">
+        strafePointMove(,,);
+    </function>
+
+    <function name="Rotate Move" id="1">
+        rotatePointMove(,,);
+    </function>
+
+    <function name="Curve Move" id="2">
+        curvePointMove(,,);
+    </function>
+
+    <function name="Auto Move" id="3">
+        autoPointMove(,,);
+    </function>
+
+<functionSet/>
+
+<functionSet name="Rotate" id="1">
+    <params name="Angle" id="0">
+    <params name="Power" id="1">
+
+    <function name="Angle Rotate" id="0">
+        angleRotate(,);
+    </function>
+
+    <function name="Forward Rotate" id="1">
+        forwardRotate(,);
+    </function>
+
+<functionSet/>
+
+<functionSet name="Sense" id="1">
+    <params name="Sensor ID" id="0">
+
+    <function name="Distance" id="0">
+        Distance = H.getDistance();
+    </function>
+
+    <function name="Vuforia Location" id="1">
+        Location = H.getVuforiaLocation();
+    </function>
+
+    <function name="Encoder Location" id="1">
+        Location = H.getEncoderLocation();
+    </function>
+
+<functionSet/>
+
+<functionSet name="Parameters" id="1">
+    <params name="Param 1" id="0">
+    <params name="Param 2" id="1">
+    <params name="Param 3" id="2">
+
+    <function name="Set Location" id="0">
+        H.setLocation(,);
+    </function>
+
+<functionSet/>
